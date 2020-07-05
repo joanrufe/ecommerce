@@ -6,31 +6,10 @@ import Providers from 'next-auth/providers'
 const options = {
   // https://next-auth.js.org/configuration/providers
   providers: [
-    Providers.Email({
-      server: process.env.EMAIL_SERVER, 
-      from: process.env.EMAIL_FROM,
-    }),
-    Providers.Google({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET
-    }),
-    Providers.Facebook({
-      clientId: process.env.FACEBOOK_ID,
-      clientSecret: process.env.FACEBOOK_SECRET
-    }),
-    Providers.Twitter({
-      clientId: process.env.TWITTER_ID,
-      clientSecret: process.env.TWITTER_SECRET
-    }),
     Providers.GitHub({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET
     }),
-    Providers.Auth0({
-      clientId: process.env.AUTH0_ID,
-      clientSecret: process.env.AUTH0_SECRET,
-      domain: process.env.AUTH0_DOMAIN
-    })
   ],
   // Database optional. MySQL, Maria DB, Postgres and MongoDB are supported.
   // https://next-auth.js.org/configuration/database
@@ -67,7 +46,7 @@ const options = {
   jwt: {
     // The JWT secret is used to encrypt and sign the JWT.
     // It is auto-generated at startup if not specified.
-    // secret: 'my-secret-123',
+    secret: process.env.SECRET,
       
     // Custom encode/decode functions for signing + encryption can be specified.
     // if you want to override what is in the JWT or how it is signed.
@@ -97,7 +76,7 @@ const options = {
   events: { },
 
   // Enable debug messages in the console if you are having problems
-  debug: false,
+  debug: true,
 }
 
 export default (req, res) => NextAuth(req, res, options)
