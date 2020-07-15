@@ -18,7 +18,7 @@ function Page(props: Props) {
     await Router.push("/login");
   };
 
-  console.log(props.auth);
+  //console.log(props.auth);
 
   return <>
     <Links />
